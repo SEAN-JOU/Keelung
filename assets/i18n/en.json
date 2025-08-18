@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "Keelung Explore Go",
+    "description": "Explore the city and collect rewards…"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "team": {
+    "title": "Our Team",
+    "founder": {
+      "name": "Sean Jou",
+      "role": "Founder & CEO/CTO",
+      "edu": "Chihlee University of Technology – Finance",
+      "exp": "Former Product Manager at Chisheng Information"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send"
+    },
+    "alerts": {
+      "success": "Sent! We’ll reply via email within 3 days.",
+      "fail": "Failed to send. Please try again.",
+      "incomplete": "Please complete all required fields."
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved © SiangStudio 2025"
+  }
+}
