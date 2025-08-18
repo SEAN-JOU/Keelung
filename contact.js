@@ -15,9 +15,9 @@ function send(){
                 timeout: 10000,
                 success: function (data) {
                     if (data.sysCode == "200") {
-                        alert("發送成功，於三天內以電子郵件的方式回覆您的問題");
+                    alert(i18n.t('contact.alerts.success'));
                     } else {
-                        alert("發送失敗，請重新再操作一次。");
+                    alert(i18n.t('contact.alerts.fail'));
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -27,7 +27,7 @@ function send(){
                 }
             });
         }else{
-            alert("發送成功，請檢查輸入資料是否齊全。");
+          alert(i18n.t('contact.alerts.incomplete'));
         }
 }
 

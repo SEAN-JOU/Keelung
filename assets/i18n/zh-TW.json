@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "基隆探點Go",
+    "description": "探索城市魅力、蒐集專屬優惠…"
+  },
+  "nav": {
+    "home": "首頁",
+    "about": "關於我們",
+    "team": "團隊成員",
+    "contact": "聯絡資訊"
+  },
+  "team": {
+    "title": "團隊成員",
+    "founder": {
+      "name": "Sean Jou",
+      "role": "創辦人 & CEO/CTO",
+      "edu": "畢業於致理科技大學-財務金融系",
+      "exp": "曾經擔任齊盛資訊產品經理"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "姓名",
+      "email": "電子郵件",
+      "subject": "主旨",
+      "message": "訊息",
+      "submit": "送出"
+    },
+    "alerts": {
+      "success": "發送成功，於三天內以電子郵件的方式回覆您的問題",
+      "fail": "發送失敗，請重新再操作一次。",
+      "incomplete": "送出失敗，請檢查輸入資料是否齊全。"
+    }
+  },
+  "footer": {
+    "rights": "版權所有 © SiangStudio 2025"
+  }
+}
