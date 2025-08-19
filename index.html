@@ -56,7 +56,6 @@
 		</div>
 	</div>
 </section>
-
 <!-- Main -->
 <div id="main">
 
@@ -78,6 +77,66 @@
 	</article>
 </section>
 
+<!-- Split Hero Slider (text + image + dots) -->
+<section id="feature" class="wrapper style1">
+  <div class="inner">
+    <div class="split-slider" id="splitSlider" aria-roledescription="carousel" aria-label="特色滑動展示">
+      <div class="slides">
+        <!-- Slide 1 -->
+        <article class="slide">
+          <div class="text">
+            <h2>天氣智慧規劃，暢遊基隆</h2>
+            <p>AI 行程 × 即時天氣 × 主題標籤，少做功課也能玩得很聰明；在地資訊更完整，決策不踩雷。</p>
+          </div>
+          <div class="media">
+            <img src="images/1.png" alt="首頁與天氣">
+          </div>
+        </article>
+        <!-- Slide 2 -->
+        <article class="slide">
+          <div class="text">
+            <h2>收藏景點行程自由組合</h2>
+            <p>特色標籤搜尋景點資訊齊全輕鬆規劃行程專屬，圖文並茂呈現亮點路線推薦即刻出發玩得盡興。</p>
+          </div>
+          <div class="media">
+            <img src="images/2.png" alt="美食地圖">
+          </div>
+        </article>
+        <!-- Slide 3 -->
+        <article class="slide">
+          <div class="text">
+            <h2>地圖就近找，少走冤枉路</h2>
+            <p>基隆美食地圖即時標記餐廳小吃，導航直達不迷路，吃喝玩樂探索城市最方便。</p>
+          </div>
+          <div class="media">
+            <img src="images/3.png" alt="點數 QRCode / 票券">
+          </div>
+        </article>
+		<!-- Slide 4 -->
+        <article class="slide">
+          <div class="text">
+            <h2>交友聊天室 · 附近好友隨時互動</h2>
+			<p>透過 基隆探點 Go 的「交友聊天室」功能，你可以即時看到附近使用者，發送訊息互動，認識志同道合的旅伴。</p>
+          </div>
+          <div class="media">
+            <img src="images/4.png" alt="點數 QRCode / 票券">
+          </div>
+        </article>
+			<!-- Slide 5 -->
+        <article class="slide">
+          <div class="text">
+            <h2>集點透明，優惠好換</h2>
+			<p>動態 QRCode＋倒數核銷，防截圖濫用；「我的集點」清楚顯示卡片、效期、可兌點數。</p>
+          </div>
+          <div class="media">
+            <img src="images/6.png" alt="點數 QRCode / 票券">
+          </div>
+        </article>
+      </div>
+      <div class="dots" aria-label="輪播導覽點"></div>
+    </div>
+  </div>
+</section>
 <!-- Two -->
 <section class="spotlights" id="two">
 	<section>
@@ -107,6 +166,8 @@
 		</div>
 	</section>
 </section>
+
+
 </div>
 
 <!-- Footer -->
@@ -137,5 +198,85 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Split slider CSS (namespaced to avoid conflicts) -->
+<style>
+.split-slider{position:relative;overflow:hidden;border-radius:16px;}
+.split-slider .slides{display:flex;transition:transform .45s ease;will-change:transform}
+.split-slider .slide{min-width:100%;display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:center;padding:2rem 2.5rem}
+.split-slider .text h2{font-size:clamp(28px,4.5vw,56px);margin:0 0 .6rem}
+.split-slider .text p{color:#64748b;margin:0 0 1.2rem}
+.split-slider blockquote{margin:0 0 1rem;color:#334155;font-style:italic;border-left:3px solid #e5e7eb;padding-left:.8rem}
+.split-slider .author{display:flex;align-items:center;gap:.8rem;color:#475569}
+.split-slider .author img{width:40px;height:40px;border-radius:999px;object-fit:cover}
+.split-slider .media{border-radius:16px;max-width:300px; max-height:600px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.split-slider .media img{width:100%; max-width:300px; max-height:600px;   display:block}
+.split-slider .dots{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:10px}
+.split-slider .dot{
+  width:12px;height:12px;border-radius:50%;
+  background:#cbd5e1; border:0; cursor:pointer; padding:0;
+  appearance:none; -webkit-appearance:none; /* 取消 button 預設 */
+}
+.split-slider .dot.active{ background:#3301fc; }
+@media (max-width: 980px){
+  .split-slider .slide{grid-template-columns:1fr;gap:1.2rem;padding:1rem}
+}
+/* dots larger & ring */
+.split-slider .dots .dot{width:12px;height:12px;border:2px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.08)}
+.split-slider .dots .dot.active{transform:scale(1.22)}
+</style>
+
+<!-- Split slider JS -->
+<script>
+(function(){
+  const root = document.getElementById('splitSlider');
+  if(!root) return;
+  const track = root.querySelector('.slides');
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const dotsWrap = root.querySelector('.dots');
+  let index = 0, startX = 0, dx = 0, isDown = false, timer = null;
+
+  // build dots
+  slides.forEach((_, i)=>{
+    const b = document.createElement('button');
+    b.className = 'dot' + (i===0 ? ' active' : '');
+    b.setAttribute('aria-label', '第 ' + (i+1) + ' 張');
+    b.addEventListener('click', ()=> go(i));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
+
+  function go(i){
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach((d,di)=> d.classList.toggle('active', di === index));
+  }
+  function next(){ go(index+1); }
+
+  // autoplay
+  function start(){ stop(); timer = setInterval(next, 6000); }
+  function stop(){ if(timer) clearInterval(timer); }
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  start();
+
+  // drag / touch
+  const onStart = e => { isDown = true; stop(); startX = (e.touches? e.touches[0].clientX : e.clientX); dx = 0; };
+  const onMove  = e => { if(!isDown) return; const x = (e.touches? e.touches[0].clientX : e.clientX); dx = x - startX; track.style.transform = 'translateX(calc(-' + (index*100) + '% + ' + dx + 'px))'; };
+  const onEnd   = () => { if(!isDown) return; isDown = false; const th = root.clientWidth * 0.15; if (dx < -th) next(); else if (dx > th) go(index - 1); else go(index); start(); };
+
+  track.addEventListener('touchstart', onStart, {passive:true});
+  track.addEventListener('touchmove',  onMove,  {passive:true});
+  track.addEventListener('touchend',   onEnd);
+  track.addEventListener('mousedown', e=>{ e.preventDefault(); onStart(e); });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup',   onEnd);
+
+  // keyboard
+  root.tabIndex = 0;
+  root.addEventListener('keydown', e=>{ if(e.key==='ArrowRight') go(index+1); if(e.key==='ArrowLeft') go(index-1); });
+})();
+</script>
+
 	</body>
 </html>
