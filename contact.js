@@ -8,7 +8,7 @@ function send(){
         message = document.querySelector('#message').value;
         if(email !== null && name1 !== null  && title !== null  && message !== null){
             $.ajax({
-                url: 'https://chithink.com/api/contact.php?email='+email+"&name="+name1+"&title=基隆探點Go"+"&message="+message,
+                url: 'https://chithink.mars.floppydemo.us//api/contact.php?email='+email+"&name="+name1+"&title=基隆探點Go"+"&message="+message,
                 type: "GET",
                 dataType: "json",
                 async: true,
